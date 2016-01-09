@@ -1,0 +1,3 @@
+[submodule "gmlib"]
+	path = gmlib
+	url = https://github.com/hilbix/gmlib.git
