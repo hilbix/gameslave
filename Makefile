@@ -24,7 +24,7 @@ st:
 # run "make watch" and each edit automatically compiles it
 .PHONY: watch it
 watch it:
-	while echo .; do inotifywait *.coffee */*.coffee; done | while read -t100; do while read -t0.5; do :; done; make && printf '\a'; echo; date; echo; done
+	inotifywait -mr -eclose_write -emove -emodify --excludei '\.js$$' . | while read -t1000 why; do while echo "$$why" && read -t0.5 why; do :; done; make && printf '\a'; echo; date; echo; done
 
 $(SUBS):
 	git submodule update --init
