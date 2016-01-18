@@ -1,7 +1,7 @@
 #
 
-TARGS=gameslave.js gameslave.user.js
-SUBS=gmlib mod
+TARGS=xorbit.js
+SUBS=
 
 %.js: %.coffee
 	@{ sed -ne "/^#\/\//s|{{{VERSION}}}|$$(git rev-parse --short HEAD || echo 0).$$(date +%Y%m%d.%H%M%S -r '$<')|g" -e "/^#\/\//s|{{{FILENAME}}}|$<|g" -e 's|^#//|//|p' '$<'; bash -xc "coffee --no-header -pc '$<'"; } > "$$(dirname '$<')/$$(basename '$<' .coffee).js"

@@ -27,9 +27,8 @@ walkDom = (o) ->
     return { name:'unknown', text:o.innerHTML, _type:o.nodeType } unless o.nodeType == 1
 
     ret = { name:o.nodeName }
-    ret['_'+a.name] = a.value for a in o.attributes
-    ret[n] = walkDom(c) for c,n in o.childNodes
-    ret.children = n if n
+    ret.attr = ( [ a.name, a.value ] for a in o.attributes ) if o.attributes
+    ret.sub = ( walkDom(c) for c in o.childNodes ) if o.childNodes
     return ret
   undefined
 
